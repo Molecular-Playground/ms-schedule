@@ -14,23 +14,15 @@ router.get('/:username', function(req,res,next){
       }
       if(results.rows[0]){
         var sid = results.rows[0].sid;
-        qString = 'SELECT pid,metadata FROM playlists WHERE sid = $1';
+        qString = 'SELECT p.pid,p.molecules FROM playlists as p, plays WHERE p.sid = $1 AND p.pid = plays.pid';
         db.query({text: qString, values: [sid]}, function(err, resultsplaylists){
           if(err){
             next(err);
             return;
           }
-          qString = 'SELECT pm.pid,pm.mid FROM playsplaylist as pp, PlaysMolecule as pm WHERE pp.sid = $1 AND pp.pid = pm.pid GROUP BY pp.pid';
-          db.query({text: qString, values: [sid]}, function(err, resultsplays){
-            if(err){
-              next(err);
-              return;
-            }
-            res.send({
-              scheduleMetadata: results.rows[0].metadata,
-              playlistMetadata: resultsplaylists.rows,
-              plays: resultsplays.rows
-            });
+          res.send({
+            schedule: results.rows[0].metadata,
+            playlists: resultsplaylists.rows
           });
         });
       } else{
