@@ -1,2 +1,2 @@
 # Schedules
-Microservice for handling login requests.
+Microservice for handling schedules and playlists.
