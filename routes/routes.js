@@ -6,6 +6,15 @@ var db = require('../lib/db.js');
 router.get('/:username', function(req,res,next){
   var username = req.params.username;
   if(username){
+    var qString = 'SELECT * FROM users'
+    db.query({text: qString}, function(err, result){
+      if(err) {
+        next(err); //TODO this is most likely wrong
+      } else {
+        res.send(result.rows);
+      }
+    });
+    /*
     var qString = 'SELECT u.sid,s.metadata FROM users as u, schedule as s WHERE username = $1 AND u.uid=s.uid';
     db.query({text: qString, values: [username]}, function(err, results){
       if(err){
@@ -29,6 +38,7 @@ router.get('/:username', function(req,res,next){
         res.send(new Error('Invalid username'));
       }
     });
+    */
   } else{
     res.send(new Error('Did not recieve required information'));
   }
