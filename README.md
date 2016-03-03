@@ -10,7 +10,7 @@ docker run -d --name schedule -p 3000:3000 --link postgres:postgres schedule
 # where the left postgres is the name of your postgres container
 ```
 
-This will run your container 'detached'. To kill the container, type in ```docker kill users```.
+This will run your container 'detached'. To kill the container, type in ```docker kill schedule```.
 
 ### To Run (Development)
 The easiest way to develop using the docker container is to mount your working directory as a volume. Before we begin, you will still need to make sure you have the database running in a container. You can find instructions on how to do that [here](https://github.com/Molecular-Playground/databaes). From inside docker virtual machine, navigate to the top directory of this repository. Enter the following commands:
