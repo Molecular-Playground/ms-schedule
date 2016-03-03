@@ -29,7 +29,7 @@ router.get('/:username', function(req,res,next){
         qString = 'SELECT pid, molecules ' +
                   'FROM Playlists ' +
                   'WHERE uid = $1 AND pid = ANY (ARRAY[' + uniquePlaylists + '])';
-        db.query({text: qString, values: [schedule.uid]}, function(err, playlistResults){
+        db.query({text: qString, values: [results.rows[0].uid]}, function(err, playlistResults){
           if(err){
             next(err);
             return;
