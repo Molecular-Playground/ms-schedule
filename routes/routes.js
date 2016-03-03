@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../lib/db.js');
 
-//TODO Test and fix.
+
 router.get('/:username', function(req,res,next){
   var username = req.params.username;
   if(username){
