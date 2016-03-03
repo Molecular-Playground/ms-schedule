@@ -5,7 +5,7 @@ All installation is done automatically through docker. If you do not have docker
 ### To Run (Production)
 The easiest way to run for production is to use the docker-compose file that can be found [here](google.com). It is possible however to run the container manually. Before we begin, make sure you have the database running in a container. You can find instructions on how to do that [here](https://github.com/Molecular-Playground/databaes). From inside docker virtual machine, navigate to the top directory of this repository. Enter the following commands:
 ```
-docker build -t users .
+docker build -t schedule .
 docker run -d --name schedule -p 3000:3000 --link postgres:postgres schedule
 # where the left postgres is the name of your postgres container
 ```
@@ -20,15 +20,7 @@ docker run -d -v $PWD:/src -p 3000:3000 --name schedule --link postgres:postgres
 # where the left postgres is the name of your postgres container
 # where $PWD is a variable to your current directory and may need changing if you are using a windows environment
 ```
-If you want to view the output of the container, use
-```
-docker logs -f schedule
-```
-To restart the container
-```
-docker restart -t=0 schedule
-```
-To restart and see output from container use
+To restart and see output from container
 ```
 docker restart -t=0 schedule;docker logs -f --tail=0 schedule
 ```
