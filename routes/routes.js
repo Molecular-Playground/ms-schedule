@@ -6,39 +6,45 @@ var db = require('../lib/db.js');
 router.get('/:username', function(req,res,next){
   var username = req.params.username;
   if(username){
-    var qString = 'SELECT * FROM users'
-    db.query({text: qString}, function(err, result){
-      if(err) {
-        next(err); //TODO this is most likely wrong
-      } else {
-        res.send(result.rows);
-      }
-    });
-    /*
-    var qString = 'SELECT u.sid,s.metadata FROM users as u, schedule as s WHERE username = $1 AND u.uid=s.uid';
+    var qString = 'SELECT s.uid, sid, schedule ' +
+                  'FROM Users as u, Schedule as s ' +
+                  'WHERE username = $1 AND u.uid = s.uid';
     db.query({text: qString, values: [username]}, function(err, results){
       if(err){
         next(err);
         return;
       }
+   
       if(results.rows[0]){
-        var sid = results.rows[0].sid;
-        qString = 'SELECT p.pid,p.molecules FROM playlists as p, plays WHERE p.sid = $1 AND p.pid = plays.pid';
-        db.query({text: qString, values: [sid]}, function(err, resultsplaylists){
+        var schedule = results.rows[0].schedule;
+        var playlistObj = {}
+        for(index in schedule){
+          if(!playlistObj[ schedule[index].pid ]) 
+            playlistObj[ schedule[index].pid ] = schedule[index].pid;
+        }
+        var uniquePlaylists = new Array;
+        for(var p in playlistObj) {
+            uniquePlaylists.push(playlistObj[p]);
+        }
+        qString = 'SELECT pid, molecules ' +
+                  'FROM Playlists ' +
+                  'WHERE pid = ANY (ARRAY[' + uniquePlaylists + '])';
+        db.query({text: qString}, function(err, playlistResults){
           if(err){
             next(err);
             return;
           }
           res.send({
-            schedule: results.rows[0].metadata,
-            playlists: resultsplaylists.rows
+            schedule: schedule,
+            playlists: playlistResults.rows
           });
         });
       } else{
         res.send(new Error('Invalid username'));
       }
+      
     });
-    */
+    
   } else{
     res.send(new Error('Did not recieve required information'));
   }
