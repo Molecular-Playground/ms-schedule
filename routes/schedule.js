@@ -17,7 +17,6 @@ router.get('/:username', function(req,res,next){
    
       if(results.rows[0]){
         var schedule = results.rows[0].schedule.schedule;
-        console.log(schedule);
         var playlistObj = {};
         for(var index in schedule){
           if(!playlistObj[ schedule[index].pid ]) 
@@ -27,7 +26,6 @@ router.get('/:username', function(req,res,next){
         for(var p in playlistObj) {
             uniquePlaylists.push(playlistObj[p]);
         }
-        console.log(uniquePlaylists);
         if(uniquePlaylists.length > 0){
           qString = 'SELECT pid, playlist ' +
                     'FROM Playlists ' +
