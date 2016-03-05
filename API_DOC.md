@@ -43,11 +43,13 @@ Gets a full schedule for logged in user.
 
 Params:
 -Header
+
         {
             "token": jwt
         }
         
 Returns:
+
         {
             "schedule": [
                 {"pid":1,"startTime":"2:00pm"},
@@ -66,6 +68,7 @@ Edits a users schedule.
 
 Params:
 -Header
+
         {
             "token": jwt
         }
@@ -81,6 +84,7 @@ Params:
         }
         
 Returns:
+
         {
             success: true,
             message: 'Updated schedule for user ' + userid
@@ -95,11 +99,13 @@ Gets all of the users playlists.
 
 Params:
 -Header
+
         {
             "token": jwt
         }
         
 Returns:
+
         {
             "playlists": [
                 {
@@ -129,10 +135,12 @@ Edits a playlist.
 
 Params:
 -Header
+
         {
             "token": jwt
         }
 -Body
+
         {
             "data": {
                 pid: playlistID,
@@ -141,6 +149,7 @@ Params:
         }
         
 Returns:
+
         {
             success: true,
             message: 'Updated playlist ' + data.pid
@@ -155,10 +164,12 @@ Renames a playlist.
 
 Params:
 -Header
+
         {
             "token": jwt
         }
 -Body
+
         {
             "data": {
                 pid: playlistID,
@@ -167,6 +178,7 @@ Params:
         }
         
 Returns:
+
         {
             success: true,
             message: 'Playlist ' + data.pid + ' renamed to ' + data.name
@@ -181,10 +193,12 @@ Adds a new playlist.
 
 Params:
 -Header
+
         {
             "token": jwt
         }
 -Body
+
         {
             "data": {
                 name: "The best playlist",
@@ -193,6 +207,7 @@ Params:
         }
         
 Returns:
+
         {
             success: true,
             message: "Added playlist",
