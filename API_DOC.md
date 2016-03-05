@@ -3,7 +3,7 @@
 Each section in this document contains all valid HTTP verbs that can
 be called.  Section headers are the route.
 
-# /public/
+# /public/:username
 
 ### #GET
 Gets a schedule with all associated playlists.
