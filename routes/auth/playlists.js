@@ -20,7 +20,7 @@ router.get('/', function(req,res,next){
 	    });
 	} else{
 		res.status(400).send({
-			error: 'Did not receive required information'
+			message: 'Did not receive required information'
 		});
 	}
 });
@@ -44,7 +44,7 @@ router.post('/', function(req, res, next){
 	    });
 	} else{
 		res.status(400).send({
-			error: "Did not receive a playlist"
+			message: "Did not receive a playlist"
 		});
 	}
 });
@@ -68,7 +68,7 @@ router.post('/rename', function(req, res, next){
 	    });
 	} else{
 		res.status(400).send({
-			error: 'Did not receive required playlist information'
+			message: 'Did not receive required playlist information'
 		});
 	}
 });
@@ -93,7 +93,7 @@ router.put('/', function(req, res, next){
 	    });
 	} else{
 		res.status(400).send({
-			error: 'Did not receive required playlist information'
+			message: 'Did not receive required playlist information'
 		});
 	}
 });

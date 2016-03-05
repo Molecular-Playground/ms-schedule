@@ -20,14 +20,14 @@ router.get('/', function(req,res,next){
         });
       } else{
         res.status(400).send({
-          error: 'User does not have a schedule'
+          message: 'User does not have a schedule'
         });
       } 
     });
     
   } else{
     res.status(400).send({
-      error: 'Did not receive required information'
+      message: 'Did not receive required information'
     });
   }
 });
@@ -52,7 +52,7 @@ router.post('/', function(req, res, next){
     });
   } else{
     res.status(400).send({
-      error: "Did not receive required information"
+      message: "Did not receive required information"
     });
   }
 });

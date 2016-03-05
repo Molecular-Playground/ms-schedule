@@ -42,19 +42,19 @@ router.get('/:username', function(req,res,next){
           });
         } else {
           res.status(400).send({
-            error: 'User does not have any playlists'
+            message: 'User does not have any playlists'
           });
         }
       } else{
         res.status(400).send({
-          error: 'Invalid username'
+          message: 'Invalid username'
         });
       }
     });
     
   } else{
     res.status(400).send({
-      error: 'Did not receive required information'
+      message: 'Did not receive required information'
     });
   }
 });
