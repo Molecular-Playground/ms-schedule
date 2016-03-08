@@ -4,9 +4,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var ms_schedule_playlist_auth = require('./routes/ms-schedule-playlist-auth');
 var ms_schedule_auth = require('./routes/ms-schedule-auth');
 var ms_schedule_public = require('./routes/ms-schedule-public');
-var ms_schedule_playlist_auth = require('./routes/ms-schedule-playlist-auth');
 
 var app = express();
 
@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/playlist', ms_schedule_playlist_auth);
 app.use('/', ms_schedule_auth);
 app.use('/', ms_schedule_public);
-app.use('/playlist', ms_schedule_playlist_auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
