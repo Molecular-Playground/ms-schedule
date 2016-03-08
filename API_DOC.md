@@ -45,7 +45,7 @@ Params:
 -Header
 
         {
-            "token": jwt
+            "Authorization": "Token YOUR_TOKEN_HERE"
         }
 
 Returns:
@@ -70,7 +70,7 @@ Params:
 -Header
 
         {
-            "token": jwt
+            "Authorization": "Token YOUR_TOKEN_HERE"
         }
 -Body
 
@@ -101,7 +101,7 @@ Params:
 -Header
 
         {
-            "token": jwt
+            "Authorization": "Token YOUR_TOKEN_HERE"
         }
 
 Returns:
@@ -137,7 +137,7 @@ Params:
 -Header
 
         {
-            "token": jwt
+            "Authorization": "Token YOUR_TOKEN_HERE"
         }
 -Body
 
@@ -166,7 +166,7 @@ Params:
 -Header
 
         {
-            "token": jwt
+            "Authorization": "Token YOUR_TOKEN_HERE"
         }
 -Body
 
@@ -195,7 +195,7 @@ Params:
 -Header
 
         {
-            "token": jwt
+            "Authorization": "Token YOUR_TOKEN_HERE"
         }
 -Body
 
