@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../../lib/db.js');
+var db = require('../lib/db.js');
+var auth = require('../lib/auth.js');
 
-
-router.get('/', function(req,res,next){
+router.get('/', auth, function(req,res,next){
   	var userid = req.user.sub;
   	if(userid){
 		var qString = 'SELECT pid, name, playlist ' +
@@ -25,7 +25,7 @@ router.get('/', function(req,res,next){
 	}
 });
 
-router.post('/', function(req, res, next){
+router.post('/', auth, function(req, res, next){
   	var data = req.body.data;
   	if(data && data.pid && data.playlist){
 		var qString = 'UPDATE Playlists ' +
@@ -49,7 +49,7 @@ router.post('/', function(req, res, next){
 	}
 });
 
-router.post('/rename', function(req, res, next){
+router.post('/rename', auth, function(req, res, next){
   	var data = req.body.data;
   	if(data && data.pid && data.name){
 		var qString = 'UPDATE Playlists ' +
@@ -73,7 +73,7 @@ router.post('/rename', function(req, res, next){
 	}
 });
 
-router.put('/', function(req, res, next){
+router.put('/', auth, function(req, res, next){
   	var data = req.body.data;
   	var userid = req.user.sub;
   	if(userid && data && data.name && data.playlist){
@@ -89,7 +89,7 @@ router.put('/', function(req, res, next){
 	      	message: "Added playlist",
 	      	pid: results.rows[0].pid
 	      });
-	      
+
 	    });
 	} else{
 		res.status(400).send({

@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../lib/db.js');
 
-
 router.get('/:username', function(req,res,next){
   var username = req.params.username;
   if(username){
@@ -14,12 +13,12 @@ router.get('/:username', function(req,res,next){
         next(err);
         return;
       }
-   
+
       if(results.rows[0]){
         var schedule = results.rows[0].schedule.schedule;
         var playlistObj = {};
         for(var index in schedule){
-          if(!playlistObj[ schedule[index].pid ]) 
+          if(!playlistObj[ schedule[index].pid ])
             playlistObj[ schedule[index].pid ] = schedule[index].pid;
         }
         var uniquePlaylists = new Array;
@@ -51,7 +50,7 @@ router.get('/:username', function(req,res,next){
         });
       }
     });
-    
+
   } else{
     res.status(400).send({
       message: 'Did not receive required information'

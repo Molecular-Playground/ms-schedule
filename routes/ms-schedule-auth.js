@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../../lib/db.js');
+var db = require('../lib/db.js');
+var auth = require('../lib/auth.js');
 
-
-router.get('/', function(req,res,next){
+router.get('/', auth, function(req,res,next){
   var userid = req.user.sub;
   if(userid){
     var qString = 'SELECT schedule ' +
@@ -22,9 +22,9 @@ router.get('/', function(req,res,next){
         res.status(400).send({
           message: 'User does not have a schedule'
         });
-      } 
+      }
     });
-    
+
   } else{
     res.status(400).send({
       message: 'Did not receive required information'
@@ -32,7 +32,7 @@ router.get('/', function(req,res,next){
   }
 });
 
-router.post('/', function(req, res, next){
+router.post('/', auth, function(req, res, next){
   var userid = req.user.sub;
   var schedule = req.body;
   if(userid && schedule){

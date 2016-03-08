@@ -3,13 +3,13 @@
 Each section in this document contains all valid HTTP verbs that can
 be called.  Section headers are the route.
 
-# /public/:username
+# /:username
 
 ### #GET
 Gets a schedule with all associated playlists.
 
-        
-Returns: 
+
+Returns:
 
         {
             "schedule": [
@@ -36,7 +36,7 @@ Returns:
 
 This is an unauthenticated endpoint.
 
-# /auth/schedule
+# /
 
 ### #GET
 Gets a full schedule for logged in user.
@@ -47,7 +47,7 @@ Params:
         {
             "token": jwt
         }
-        
+
 Returns:
 
         {
@@ -61,7 +61,7 @@ Returns:
 
 This is an authenticated endpoint.
 
-# /auth/schedule
+# /
 
 ### #POST
 Edits a users schedule.
@@ -80,9 +80,9 @@ Params:
                 {"pid":2,"startTime":"4:00pm"},
                 {"pid":3,"startTime":"6:00pm"},
                 {"pid":1,"startTime":"6:00pm"}
-            ] 
+            ]
         }
-        
+
 Returns:
 
         {
@@ -92,7 +92,7 @@ Returns:
 
 This is an authenticated endpoint.
 
-# /auth/playlist
+# /playlist
 
 ### #GET
 Gets all of the users playlists.
@@ -103,7 +103,7 @@ Params:
         {
             "token": jwt
         }
-        
+
 Returns:
 
         {
@@ -128,7 +128,7 @@ Returns:
 
 This is an authenticated endpoint.
 
-# /auth/playlist
+# /playlist
 
 ### #POST
 Edits a playlist.
@@ -147,7 +147,7 @@ Params:
                 playlist: [5,1,3,4,7,3]
             }
         }
-        
+
 Returns:
 
         {
@@ -157,7 +157,7 @@ Returns:
 
 This is an authenticated endpoint.
 
-# /auth/playlist/rename
+# /playlist/rename
 
 ### #POST
 Renames a playlist.
@@ -176,7 +176,7 @@ Params:
                 name: "The best playlist"
             }
         }
-        
+
 Returns:
 
         {
@@ -186,7 +186,7 @@ Returns:
 
 This is an authenticated endpoint.
 
-# /auth/playlist
+# /playlist
 
 ### #PUT
 Adds a new playlist.
@@ -205,7 +205,7 @@ Params:
                 playlist: [5,1,3,4,7,3]
             }
         }
-        
+
 Returns:
 
         {
