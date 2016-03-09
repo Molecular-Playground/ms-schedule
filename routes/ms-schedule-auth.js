@@ -34,7 +34,7 @@ router.get('/', auth, function(req,res,next){
 
 router.post('/', auth, function(req, res, next){
   var userid = req.user.sub;
-  var schedule = req.body;
+  var schedule = req.body.schedule;
   if(userid && schedule){
     var qString = 'UPDATE Schedule ' +
                   'SET schedule = $1 ' +
