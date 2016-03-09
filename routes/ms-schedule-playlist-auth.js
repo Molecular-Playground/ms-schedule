@@ -74,12 +74,11 @@ router.post('/rename', auth, function(req, res, next){
 });
 
 router.put('/', auth, function(req, res, next){
-  	var data = req.body.data;
   	var userid = req.user.sub;
-  	if(userid && data && data.name && data.playlist){
+  	if(userid && req.body.name && req.body.playlist){
 		var qString = 'INSERT INTO Playlists(uid, name, playlist) ' +
 					  'Values ($1, $2, $3) RETURNING pid';
-	    db.query({text: qString, values: [userid, data.name, data.playlist]}, function(err, results){
+	    db.query({text: qString, values: [userid, req.body.name, req.body.playlist]}, function(err, results){
 	      if(err){
 	        next(err);
 	        res.send(err);
