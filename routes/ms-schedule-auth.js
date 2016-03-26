@@ -17,7 +17,7 @@ router.get('/', auth, function(req,res,next) {
         });
       } else {
         var err = new Error("User does not have a schedule");
-        err.status_code = 400;
+        err.status = 400;
         next(err);
         return;
       }
@@ -25,7 +25,7 @@ router.get('/', auth, function(req,res,next) {
 
   } else {
     var err = new Error("Did not receive required information");
-    err.status_code = 400;
+    err.status = 400;
     next(err);
     return;
   }
@@ -49,7 +49,7 @@ router.post('/', auth, function(req, res, next) {
     });
   } else {
     var err = new Error("Did not receive required information");
-    err.status_code = 400;
+    err.status = 400;
     next(err);
     return;
   }

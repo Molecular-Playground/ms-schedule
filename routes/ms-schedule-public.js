@@ -35,13 +35,13 @@ router.get('/:username', function(req,res,next) {
           });
         } else {
           var err = new Error("User does not have any playlists");
-          err.status_code = 400;
+          err.status = 400;
           next(err);
           return;
         }
       } else {
         var err = new Error("Invalid username");
-        err.status_code = 400;
+        err.status = 400;
         next(err);
         return;
       }
@@ -49,7 +49,7 @@ router.get('/:username', function(req,res,next) {
 
   } else {
     var err = new Error("Did not receive required information");
-    err.status_code = 400;
+    err.status = 400;
     next(err);
     return;
   }
