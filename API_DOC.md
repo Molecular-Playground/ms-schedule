@@ -6,7 +6,7 @@ be called.  Section headers are the route.
 # /:username
 
 ### #GET
-Gets a schedule with all associated playlists.
+Gets a schedule with all associated playlists and molecules.
 
 
 Returns:
@@ -18,20 +18,16 @@ Returns:
                 {"pid":3,"startTime":"6:00pm"},
                 {"pid":1,"startTime":"6:00pm"}
                 ],
-            "playlists": [
-                {
-                    "pid":1,
-                    "playlist":[1,2,3]
-                },
-                {
-                    "pid":2,
-                    "playlist":[4,1,5]
-                },
-                {
-                    "pid":3,
-                    "playlist":[3,2,2]
-                }
-            ]
+            "playlists": {
+                "1": [1, 3, 3, 2],
+                "2": [2, 1, 3],
+                "3": [3, 2, 1]
+            },
+            "molecules": {
+                "1": "link 1",
+                "2": "link 2",
+                "3": "link 3"
+            }
         }
 
 This is an unauthenticated endpoint.
@@ -143,8 +139,8 @@ Params:
 
         {
             "data": {
-                pid: playlistID,
-                playlist: [5,1,3,4,7,3]
+                "pid": playlistID,
+                "playlist": "[5,1,3,4,7,3]"
             }
         }
 
@@ -172,8 +168,8 @@ Params:
 
         {
             "data": {
-                pid: playlistID,
-                name: "The best playlist"
+                "pid": playlistID,
+                "name": "The best playlist"
             }
         }
 
@@ -201,8 +197,8 @@ Params:
 
         {
             "data": {
-                name: "The best playlist",
-                playlist: [5,1,3,4,7,3]
+                "name": "playlist 3",
+                "playlist": "[1,2,3]"
             }
         }
 
