@@ -50,8 +50,8 @@ router.post('/rename', auth, function(req, res, next) {
   	var data = req.body.data;
   	if(data && data.pid && data.name) {
 		var qString = 'UPDATE Playlists ' +
-						'SET name = $1  ' +
-			            'WHERE pid = $2';
+				'SET name = $1  ' +
+				'WHERE pid = $2';
 	    db.query({text: qString, values: [data.name, data.pid]}, function(err, results) {
 	      if(err) {next(err); return;}
         else {
